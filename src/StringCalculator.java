@@ -1,6 +1,6 @@
 public class StringCalculator
 {
-    public int Add(String numbers) throws Exception
+    public int Add(String numbers)
     {
         int sum = 0;
         if(numbers.length()==0) {
@@ -14,12 +14,16 @@ public class StringCalculator
                 if(number.length()==0) {
                     number = "0";
                 }
+                    try {
 
-                    if(Integer.parseInt(number)<0) {
-                        throw new NegativeNumberException("negatives not allowed "+ number);
+
+                        if (Integer.parseInt(number) < 0) {
+                            throw new NegativeNumberException("" + number+" ");
+                        }
+                        sum += Integer.parseInt(number);
+                    }catch (Exception e) {
+                        System.out.println("negatives are not allowed "+e.getMessage());
                     }
-                    sum+= Integer.parseInt(number);
-
 
             }
         }
@@ -27,7 +31,7 @@ public class StringCalculator
         return sum;
     }
 
-    public static void main(String[] args)  throws Exception{
+    public static void main(String[] args) {
         StringCalculator stringCalculator = new StringCalculator();
 
         assert stringCalculator.Add("")==0:"error";
@@ -37,6 +41,7 @@ public class StringCalculator
         assert stringCalculator.Add(";\n1;2")==3:"error";
         assert stringCalculator.Add("-1,2")==0:"error";
 
+        assert stringCalculator.Add("-1,-2,-3,2")==0:"error";
 
 
     }
