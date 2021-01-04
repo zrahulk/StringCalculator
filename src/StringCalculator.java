@@ -1,11 +1,12 @@
 public class StringCalculator
 {
-    public int Add(String numbers)
+    public int Add(String numbers) throws Exception
     {
         int sum = 0;
         if(numbers.length()==0) {
             sum = 0;
         } else {
+
             String[] numArray = numbers.split(";");
             for (String number: numArray
                  ) {
@@ -13,14 +14,20 @@ public class StringCalculator
                 if(number.length()==0) {
                     number = "0";
                 }
-                sum+= Integer.parseInt(number);
+
+                    if(Integer.parseInt(number)<0) {
+                        throw new NegativeNumberException("negatives not allowed "+ number);
+                    }
+                    sum+= Integer.parseInt(number);
+
+
             }
         }
 
         return sum;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws Exception{
         StringCalculator stringCalculator = new StringCalculator();
 
         assert stringCalculator.Add("")==0:"error";
@@ -28,6 +35,7 @@ public class StringCalculator
         assert stringCalculator.Add("1;2")==3:"error";
         assert stringCalculator.Add("1;2;3;4;5")==15:"error";
         assert stringCalculator.Add(";\n1;2")==3:"error";
+        assert stringCalculator.Add("-1,2")==0:"error";
 
 
 
