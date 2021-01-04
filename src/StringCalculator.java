@@ -6,7 +6,7 @@ public class StringCalculator
         if(numbers.length()==0) {
             sum = 0;
         } else {
-            String[] numArray = numbers.split(",");
+            String[] numArray = numbers.split(";");
             for (String number: numArray
                  ) {
                 number = number.trim();
@@ -25,7 +25,9 @@ public class StringCalculator
 
         assert stringCalculator.Add("")==0:"error";
         assert stringCalculator.Add("1")==1:"error";
-        assert stringCalculator.Add("1,2")==3:"error";
+        assert stringCalculator.Add("1;2")==3:"error";
+        assert stringCalculator.Add("1;2;3;4;5")==15:"error";
+        assert stringCalculator.Add(";\n1;2")==3:"error";
 
 
 
