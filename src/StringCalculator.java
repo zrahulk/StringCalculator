@@ -6,7 +6,7 @@ public class StringCalculator
         if(numbers.length()==0) {
             sum = 0;
         } else {
-
+            numbers = numbers.replaceAll("[^0-9;]", "");
             String[] numArray = numbers.split(";");
             for (String number: numArray
                  ) {
@@ -36,7 +36,6 @@ public class StringCalculator
 
     public static void main(String[] args) {
         StringCalculator stringCalculator = new StringCalculator();
-
         assert stringCalculator.Add("")==0:"error";
         assert stringCalculator.Add("1")==1:"error";
         assert stringCalculator.Add("1;2")==3:"error";
@@ -46,6 +45,7 @@ public class StringCalculator
 
         assert stringCalculator.Add("-1,-2,-3,2")==0:"error";
         assert stringCalculator.Add("1003,2")==2:"error";
+        assert stringCalculator.Add("$%^%&1;2")==3:"error";
 
 
     }
