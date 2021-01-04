@@ -10,6 +10,9 @@ public class StringCalculator
             for (String number: numArray
                  ) {
                 number = number.trim();
+                if(number.length()==0) {
+                    number = "0";
+                }
                 sum+= Integer.parseInt(number);
             }
         }
@@ -21,8 +24,9 @@ public class StringCalculator
         StringCalculator stringCalculator = new StringCalculator();
 
         assert stringCalculator.Add("")==0:"error";
-        assert stringCalculator.Add("1")==0:"error";
-        assert stringCalculator.Add("1,2")==0:"error";
+        assert stringCalculator.Add("1")==1:"error";
+        assert stringCalculator.Add("1,2")==3:"error";
+
 
 
     }
