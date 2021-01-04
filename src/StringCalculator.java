@@ -15,12 +15,15 @@ public class StringCalculator
                     number = "0";
                 }
                     try {
+                        int num = Integer.parseInt(number);
 
-
-                        if (Integer.parseInt(number) < 0) {
+                        if (num < 0) {
                             throw new NegativeNumberException("" + number+" ");
                         }
-                        sum += Integer.parseInt(number);
+                        if(num>1000) {
+                            num  = 0;
+                        }
+                        sum += num;
                     }catch (Exception e) {
                         System.out.println("negatives are not allowed "+e.getMessage());
                     }
@@ -42,6 +45,7 @@ public class StringCalculator
         assert stringCalculator.Add("-1,2")==0:"error";
 
         assert stringCalculator.Add("-1,-2,-3,2")==0:"error";
+        assert stringCalculator.Add("1003,2")==2:"error";
 
 
     }
